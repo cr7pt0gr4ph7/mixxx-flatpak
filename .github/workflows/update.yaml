@@ -19,14 +19,9 @@ jobs:
   flatpak-external-data-checker:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        branch: [ master ] # list all branches to check
-
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ matrix.branch }}
           submodules: true
 
       - uses: docker://ghcr.io/flathub-infra/flatpak-external-data-checker:latest
