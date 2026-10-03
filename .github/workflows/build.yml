@@ -69,6 +69,11 @@ jobs:
           GPGKey=${{ secrets.GPG_PUBLIC_KEY }}
           EOF
 
+      # Workaround because andyholmes/flatter fails otherwise
+      - name: Create repository directory
+        shell: bash
+        run: mkdir repo
+
       - name: Build
         uses: andyholmes/flatter@5a7afa8f3c149fc5862a6f9cb5be801f37c4d423
         with:
