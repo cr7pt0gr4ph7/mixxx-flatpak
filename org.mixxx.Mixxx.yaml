@@ -4,36 +4,36 @@ runtime-version: '6.11'
 sdk: org.kde.Sdk
 command: mixxx
 rename-icon: mixxx
-rename-desktop-file: org.mixxx.Mixxx.desktop
-rename-appdata-file: org.mixxx.Mixxx.metainfo.xml
-
 finish-args:
+  # Wayland is used by default
+  - --socket=wayland
+  - --socket=fallback-x11
+
+  # PulseAudio is needed for ALSA device access
+  - --socket=pulseaudio
+
   # Required for DJ controller support
   - --device=all
+
+  # Used by X11 and MusicBrainz metadata lookups
+  - --share=network
+  - --share=ipc
+
+  # Permit PipeWire and user music directory access
+  - --filesystem=xdg-run/pipewire-0
+  - --filesystem=xdg-music
 
   # Hack to make removable drives available in the library GUI
   # https://github.com/flatpak/flatpak/issues/2713#issuecomment-1958510347
   - --filesystem=/media
   - --filesystem=/run/media
 
-  # Wayland is used by default
-  - --socket=wayland
-  - --socket=fallback-x11
-
-  # Used by X11 and MusicBrainz metadata lookups
-  - --share=ipc
-  - --share=network
-
-  # Permit PipeWire and user music directory access
-  - --filesystem=xdg-run/pipewire-0
-  - --filesystem=xdg-music
-
-  # PulseAudio is needed for ALSA device access
-  - --socket=pulseaudio
-
-  # Talk to UPower and RTKit services on the session bus
+  # Talk to UPower and RTKit services on the system bus
   - --system-talk-name=org.freedesktop.UPower
   - --system-talk-name=org.freedesktop.RealtimeKit1
+
+  # Talk to ScreenSaver service on the session bus
+  - --talk-name=org.freedesktop.ScreenSaver
 
   # Ignore ALSA configuration
   - --env=ALSA_CONFIG_PATH=
