@@ -32,6 +32,24 @@ sudo flatpak install io.github.cr7pt0gr4ph7.Mixxx
 
 As noted above, this is a bleeding edge build used for testing purposes, and no guarantees are given regarding the stability or bugginess. Use at your own risk!
 
+## Forking this repository
+
+Setting up builds for a fork requires you to setup the following secrets in the repository settings:
+
+- `GPG_PRIVATE_KEY` &mdash; Base64-encoded private GPG key for signing the resulting Flatpak image.
+- `GPG_PUBLIC_KEY` &mdash; Base64-encoded public GPG key for signing the resulting Flatpak image.
+- `GPG_PASSPHRASE` &mdash; Passphrase for the private GPG key.
+
+Use the following steps to generate the necessary key files (see also the [GitHub Docs](https://docs.github.com/en/authentication/managing-commit-signature-verification/generating-a-new-gpg-key) for related instructions):
+
+1. Invoke `gpg --full-generate-key` and follow the instructions. Write down the ID of the key you generated.
+2. Invoke `gpg --list-secret-keys --keyid-format=long` to determine the ID of your new key, if you haven't already written it down.
+3. Invoke `gpg --armor --export-secret-keys [KEY-ID-OR-EMAIL] | wl-copy` to copy the secret key to the clipboard (for pasting into the GitHub Web UI), and paste as `GPG_PRIVATE_KEY`. `[KEY-ID-OR-EMAIL]` can be either the email address you specified in step 1, or a key id of the form `0123456789ABCDEF`.
+4. Set your chosen passphrase as `GPG_PASSPHRASE`.
+5. Invoke `gpg --export [KEY-ID-OR-EMAIL] | base64 --wrap 0 | wl-copy`, and paste as `GPG_PUBLIC_KEY`.
+
+Afterwards, you should be able to start builds in your repository.
+
 ## Acknowledgements
 
 - [The Mixxx Team](https://github.com/mixxxdj/mixxx)
