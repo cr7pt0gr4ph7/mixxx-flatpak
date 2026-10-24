@@ -1,4 +1,4 @@
-app-id: io.github.cr7pt0gr4ph7.Mixxx.Upstream
+app-id: io.github.cr7pt0gr4ph7.Mixxx
 runtime: org.kde.Platform
 runtime-version: '6.11'
 sdk: org.kde.Sdk
