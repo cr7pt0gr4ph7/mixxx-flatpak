@@ -62,10 +62,11 @@ jobs:
           cat > default.flatpakrepo <<- EOF
           [Flatpak Repo]
           Title=github.com/${{ github.repository }}
+          Description=Custom Flatpak repository of ${{ github.repository }} on GitHub
+          Comment=Custom Flatpak repository of ${{ github.repository }} on GitHub
           Url=$github_pages_url
           Homepage=${{ github.server_url }}/${{ github.repository }}
-          Comment=Custom Flatpak repository of ${{ github.repository }} on GitHub
-          Description=Custom Flatpak repository of ${{ github.repository }} on GitHub
+          Icon=https://raw.githubusercontent.com/flatpak/flatpak/main/flatpak.png
           GPGKey=${{ secrets.GPG_PUBLIC_KEY }}
           EOF
 
