@@ -8,8 +8,8 @@ config-opts:
   - -Dtools=disabled
 sources:
   - type: archive
-    url: https://gitlab.com/drobilla/serd/-/archive/v0.32.6/serd-v0.32.6.tar.gz
-    sha256: 7fcea95de1a676c6bc33c2ee24f3c179cec613765db1ea8562dec0e6fe6eb292
+    url: https://gitlab.com/drobilla/serd/-/archive/v0.32.10/serd-v0.32.10.tar.gz
+    sha256: d17b99ef250e4dffcdd08c8eaad2459a1519c1ff2553fa91176ce71ac0dd0739
     x-checker-data:
       type: anitya
       project-id: 230531
